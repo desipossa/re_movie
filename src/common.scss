@@ -23,10 +23,51 @@ body {
     font-size: 16px;
     color: #f7f7f7;
     background: #343a40;
+    overflow-y: scroll;
 }
 
 img {
     max-width: 100%;
+    vertical-align: middle;
+}
+
+.inner {
+    width: 1600px;
+    margin: 0 auto;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.Load {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    background: #343a40;
+    color: rgba(255, 255, 255, 0.5);
+    z-index: 99999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+}
+
+.Header {
+    line-height: 100px;
+
+    h1 {
+        width: 150px;
+        font-size: 0;
+    }
+
+    .flex {
+        gap: 30px;
+    }
 }
 
 .List {

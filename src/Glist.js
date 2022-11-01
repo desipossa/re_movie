@@ -4,20 +4,21 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import Load from './Load';
 
-const Main = ({ limit }) => {
+const Glist = ({ genre, limit }) => {
     //데이터 가져오기
     const [movie, getMovie] = useState([]);
     const [load, setLoad] = useState(true);
     const MS = useRef(null)
     const movieData = async () => {
-        const movie = await axios.get(`https://yts.mx/api/v2/list_movies.json?limit=${limit}`);
+        setLoad(true)
+        const movie = await axios.get(`https://yts.mx/api/v2/list_movies.json?limit=${limit}&genre=${genre}`);
         getMovie(movie.data.data.movies);
         console.log(movie.data.data.movies);
         setLoad(false)
     }
     useEffect(() => {
         movieData()
-    }, [])
+    }, [genre])
     return (
         <section className='Main'>
             {
@@ -63,4 +64,4 @@ const Main = ({ limit }) => {
     )
 }
 
-export default Main;
+export default Glist;

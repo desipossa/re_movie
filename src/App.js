@@ -3,6 +3,8 @@ import List from './List';
 import './common.scss'
 import { Link, Route, Routes } from 'react-router-dom';
 import Main from './Main';
+import Header from './Header';
+import Glist from './Glist';
 
 const App = () => {
     const genreList = [
@@ -19,23 +21,26 @@ const App = () => {
     ]
     return (
         <div>
-            <ul className='List'>
-                {
-                    genreList.map(it => {
-                        return (
-                            <li>
-                                <Link to={it}>{it}</Link>
-                            </li>
-                        )
-                    })
-                }
-            </ul>
+
+            <Header>
+                <ul className='flex'>
+                    {
+                        genreList.map(it => {
+                            return (
+                                <li>
+                                    <Link to={it}>{it}</Link>
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+            </Header>
             <Routes>
                 <Route path="/" element={<Main limit={50} />} />
                 {
                     genreList.map(it => {
                         return (
-                            <Route path={it} element={<List genre={it} limit={5} />} />
+                            <Route path={it} element={<Glist genre={it} limit={20} />} />
                         )
                     })
                 }

@@ -1,11 +1,13 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import Load from './Load';
 
 const List = ({ genre, limit }) => {
     //데이터 가져오기
     const [movie, getMovie] = useState([]);
     const [load, setLoad] = useState(true);
     const movieData = async () => {
+        setLoad(true)
         const movie = await axios.get(`https://yts.mx/api/v2/list_movies.json?limit=${limit}&genre=${genre}`);
         getMovie(movie.data.data.movies);
         setLoad(false)
@@ -17,7 +19,7 @@ const List = ({ genre, limit }) => {
         <div>
             {
                 load
-                    ? <div>로딩중...</div>
+                    ? <Load />
                     :
                     <ul className='List'>
                         {
