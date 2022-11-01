@@ -5,10 +5,8 @@ const List = ({ genre, limit }) => {
     //데이터 가져오기
     const [movie, getMovie] = useState([]);
     const [load, setLoad] = useState(true);
-    console.log(genre, limit);
     const movieData = async () => {
         const movie = await axios.get(`https://yts.mx/api/v2/list_movies.json?limit=${limit}&genre=${genre}`);
-        console.log(movie.data.data.movies);
         getMovie(movie.data.data.movies);
         setLoad(false)
     }

@@ -2,6 +2,7 @@ import React from 'react'
 import List from './List';
 import './common.scss'
 import { Link, Route, Routes } from 'react-router-dom';
+import Main from './Main';
 
 const App = () => {
     const genreList = [
@@ -30,6 +31,7 @@ const App = () => {
                 }
             </ul>
             <Routes>
+                <Route path="/" element={<Main limit={50} />} />
                 {
                     genreList.map(it => {
                         return (
