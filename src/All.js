@@ -16,18 +16,27 @@ const All = () => {
         allMovie()
     }, [page]);
 
-    const listNUm = Array.from({ length: total / 50 });
     const cnum = 20;
+    const pnum = 50;
+
+    const listNUm = Array.from({ length: total / pnum });
+
     return (
         <>
-            <button onClick={() => setSnum(snum - cnum)}>Prev</button>
+            {
+                snum === 1 ? null : <button onClick={() => setSnum(snum - cnum)}>Prev</button>
+            }
+
             <ul>
                 {
                     listNUm.slice(snum, snum + cnum).map((it, idx) => <button onClick={() => setPage(idx + snum)}
                     >{idx + snum}</button>)
                 }
             </ul>
-            <button onClick={() => setSnum(snum + cnum)}>NEXT</button>
+            {
+                snum > total / pnum - cnum ? null : <button onClick={() => setSnum(snum + cnum)}>NEXT</button>
+            }
+
             <div>
                 {
                     movie.map(it => <li>{it.title}</li>)
