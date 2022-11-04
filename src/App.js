@@ -38,21 +38,25 @@ const App = () => {
                 </ul>
             </Header>
             <Routes>
-                <Route path="/" element={<Main limit={50} />} />
+                <Route path="/" element={<Main limit={50} />}>
+                    <Route path="/detail/:id" element={<Detail />} />
+                </Route>
                 {
                     genreList.map(it => {
                         return (
-                            <Route path={it} element={<Glist genre={it} limit={20} />} />
+                            <Route path={it} element={<Glist genre={it} limit={20} />}>
+                                <Route path={`/${it}/:id`} element={<Detail limit={50} />} />
+                            </Route>
                         )
                     })
                 }
-                <Route path="/detail/:id" element={<Detail limit={50} />} />
-            </Routes>
-            <All />
 
-            <List genre='Drama' limit={16} />
-            <List genre='Action' limit={16} />
-            <List genre='Horror' limit={16} />
+            </Routes>
+
+
+            {/* <All /> */}
+
+
         </div>
     )
 }

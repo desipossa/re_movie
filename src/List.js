@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 import Load from './Load';
 
 const List = ({ genre, limit }) => {
@@ -27,12 +28,14 @@ const List = ({ genre, limit }) => {
                             movie.map(it => {
                                 return (
                                     <li key={it.id} className='itm'>
-                                        <figure>
-                                            <img src={it.medium_cover_image} alt={it.title} />
-                                        </figure>
-                                        <div className="case">
-                                            <div className='desc'>{it.title}</div>
-                                        </div>
+                                        <Link to={`/detail/${it.id}`}>
+                                            <figure>
+                                                <img src={it.medium_cover_image} alt={it.title} />
+                                            </figure>
+                                            <div className="case">
+                                                <div className='desc'>{it.title}</div>
+                                            </div>
+                                        </Link>
                                     </li>
                                 )
                             })
