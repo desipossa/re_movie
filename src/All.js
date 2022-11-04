@@ -7,7 +7,7 @@ const All = () => {
     const [total, setTotal] = useState(0);
     const [snum, setSnum] = useState(1);
     const allMovie = async () => {
-        const res = await axios.get(`https://yts.mx/api/v2/list_movies.json?page=${page}&limit=50`);
+        const res = await axios.get(`https://yts.mx/api/v2/list_movies.json?page=${page}&limit=16`);
         console.log(res.data, res.data.data.movie_count);
         setMovie(res.data.data.movies);
         setTotal(res.data.data.movie_count)
@@ -17,32 +17,47 @@ const All = () => {
     }, [page]);
 
     const cnum = 20;
-    const pnum = 50;
+    const pnum = 10;
 
     const listNUm = Array.from({ length: total / pnum });
 
     return (
-        <>
-            {
-                snum === 1 ? null : <button onClick={() => setSnum(snum - cnum)}>Prev</button>
-            }
+        <section className='All sec'>
 
-            <ul>
+            <ul className='grid'>
                 {
-                    listNUm.slice(snum, snum + cnum).map((it, idx) => <button onClick={() => setPage(idx + snum)}
-                    >{idx + snum}</button>)
+                    movie.map(it => {
+                        return (
+                            <li key={it.id} className='itm'>
+                                <figure>
+                                    <img src={it.medium_cover_image} alt={it.title} />
+                                </figure>
+                                <div className="case">
+                                    <div className='desc'>{it.title}</div>
+                                </div>
+                            </li>
+                        )
+                    })
                 }
             </ul>
-            {
-                snum > total / pnum - cnum ? null : <button onClick={() => setSnum(snum + cnum)}>NEXT</button>
-            }
-
-            <div>
+            <ul className='inner'>
                 {
-                    movie.map(it => <li>{it.title}</li>)
+                    snum === 1 ? null : <button onClick={() => setSnum(snum - cnum)}>Prev</button>
                 }
-            </div>
-        </>
+
+                <li>
+                    {
+                        listNUm.slice(snum, snum + cnum).map((it, idx) => <button onClick={() => setPage(idx + snum)}
+                        >{idx + snum}</button>)
+                    }
+                </li>
+
+                {
+                    snum > total / pnum - cnum ? null : <button onClick={() => setSnum(snum + cnum)}>NEXT</button>
+                }
+            </ul>
+
+        </section>
 
     )
 }

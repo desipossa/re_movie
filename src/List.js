@@ -16,27 +16,30 @@ const List = ({ genre, limit }) => {
         movieData()
     }, [genre])
     return (
-        <div>
+        <section className='List sec'>
+            <h2 className='inner'>{genre}</h2>
             {
                 load
                     ? <Load />
                     :
-                    <ul className='List'>
+                    <ul className='inner grid'>
                         {
                             movie.map(it => {
                                 return (
-                                    <li key={it.id}>
+                                    <li key={it.id} className='itm'>
                                         <figure>
                                             <img src={it.medium_cover_image} alt={it.title} />
                                         </figure>
-                                        <div>{it.title}</div>
+                                        <div className="case">
+                                            <div className='desc'>{it.title}</div>
+                                        </div>
                                     </li>
                                 )
                             })
                         }
                     </ul>
             }
-        </div>
+        </section>
     )
 }
 
