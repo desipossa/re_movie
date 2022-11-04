@@ -151,3 +151,22 @@ img {
     }
 
 }
+
+.All {
+    .btn {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+
+        line-height: 100px;
+
+
+        button {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #f7f7f7;
+            margin: 0 3px;
+        }
+    }
+}

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 
 const All = () => {
     const [movie, setMovie] = useState([]);
@@ -29,20 +30,23 @@ const All = () => {
                     movie.map(it => {
                         return (
                             <li key={it.id} className='itm'>
-                                <figure>
-                                    <img src={it.medium_cover_image} alt={it.title} />
-                                </figure>
-                                <div className="case">
-                                    <div className='desc'>{it.title}</div>
-                                </div>
+                                <Link to={`/detail/${it.id}`}>
+                                    <figure>
+                                        <img src={it.medium_cover_image} alt={it.title} />
+                                    </figure>
+                                    <div className="case">
+                                        <div className='desc'>{it.title}</div>
+                                    </div>
+                                </Link>
+
                             </li>
                         )
                     })
                 }
             </ul>
-            <ul className='inner'>
+            <ul className='inner btn'>
                 {
-                    snum === 1 ? null : <button onClick={() => setSnum(snum - cnum)}>Prev</button>
+                    snum === 1 ? null : <li><button onClick={() => setSnum(snum - cnum)}>Prev</button></li>
                 }
 
                 <li>
@@ -53,7 +57,7 @@ const All = () => {
                 </li>
 
                 {
-                    snum > total / pnum - cnum ? null : <button onClick={() => setSnum(snum + cnum)}>NEXT</button>
+                    snum > total / pnum - cnum ? null : <li><button onClick={() => setSnum(snum + cnum)}>NEXT</button></li>
                 }
             </ul>
 

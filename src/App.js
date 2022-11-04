@@ -6,6 +6,7 @@ import Main from './Main';
 import Header from './Header';
 import Glist from './Glist';
 import All from './All';
+import Detail from './Detail';
 
 const App = () => {
     const genreList = [
@@ -45,6 +46,7 @@ const App = () => {
                         )
                     })
                 }
+                <Route path="/detail/:id" element={<Detail limit={50} />} />
             </Routes>
             <All />
 
