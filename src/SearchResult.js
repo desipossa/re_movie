@@ -47,7 +47,7 @@ const SearchResult = () => {
                                 movie ? movie.movies?.map(it => {
                                     return (
                                         <li className='itm'>
-                                            <Link to={`/search/${it.id}`}>
+                                            <Link to={`/detail/${it.id}`}>
                                                 <figure>
                                                     <img src={it.medium_cover_image} alt={it.title} onError={handleImgError} />
                                                 </figure>
