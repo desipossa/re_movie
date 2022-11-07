@@ -9,7 +9,7 @@ const All = () => {
     const [snum, setSnum] = useState(1);
     const allMovie = async () => {
         const res = await axios.get(`https://yts.mx/api/v2/list_movies.json?page=${page}&limit=16`);
-        console.log(res.data, res.data.data.movie_count);
+        //console.log(res.data, res.data.data.movie_count);
         setMovie(res.data.data.movies);
         setTotal(res.data.data.movie_count)
     }
@@ -30,7 +30,7 @@ const All = () => {
                     movie.map(it => {
                         return (
                             <li key={it.id} className='itm'>
-                                <Link to={`/Action/${it.id}`}>
+                                <Link to={`/detail/${it.id}`}>
                                     <figure>
                                         <img src={it.medium_cover_image} alt={it.title} />
                                     </figure>
@@ -52,7 +52,7 @@ const All = () => {
                 <li>
                     {
                         listNUm.slice(snum, snum + cnum).map((it, idx) => <button onClick={() => setPage(idx + snum)}
-                        >{idx + snum}</button>)
+                            key={idx}>{idx + snum}</button>)
                     }
                 </li>
 
