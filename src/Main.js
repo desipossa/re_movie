@@ -16,13 +16,14 @@ const Main = ({ limit }) => {
         e.target.src = process.env.PUBLIC_URL + "/cover.jpg";
     }
     const movieData = async () => {
+        setLoad(true)
         const movie = await axios.get(`https://yts.mx/api/v2/list_movies.json?limit=${limit}`);
         getMovie(movie.data.data.movies);
-        //console.log(movie.data.data.movies);
-        setLoad(false)
+        console.log(movie.data.data.movies);
     }
     useEffect(() => {
-        movieData()
+        movieData();
+        setLoad(false)
     }, [])
     return (
         <>
@@ -40,7 +41,7 @@ const Main = ({ limit }) => {
                             centerPadding={'100px'}
                         >
                             {
-                                movie.map(it => {
+                                movie?.map(it => {
                                     return (
                                         <div key={it.id} className="itm">
 
@@ -53,7 +54,7 @@ const Main = ({ limit }) => {
                                                     <div className='desc'>{it.description_full.substr(0, 100)} ... </div>
                                                     <ul className='genre'>
                                                         {
-                                                            it.genres.map((g, i) => <li key={i}>{g}</li>)
+                                                            it.genres?.map((g, i) => <li key={i}>{g}</li>)
                                                         }
                                                     </ul>
                                                 </div>

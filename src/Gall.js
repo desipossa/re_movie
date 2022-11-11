@@ -55,7 +55,7 @@ const Gall = ({ genre }) => {
                 <li>
                     {
                         listNUm.slice(snum, snum + cnum).map((it, idx) => <button onClick={() => setPage(idx + snum)}
-                        >{idx + snum}</button>)
+                            key={idx}>{idx + snum}</button>)
                     }
                 </li>
 
